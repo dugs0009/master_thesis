@@ -1,0 +1,137 @@
+% ----------------------------------------------------------------------%
+% Coquille pour thèses et mémoires.                                   %
+% UQAR, 29 mai 2009.                                                    %
+% Modifié par F. cyr - aout 2013          								%
+%		      AC. Tassel - janvier 2014                                 %
+%		      C. Rigaud - janvier 2014                                  %
+% ----------------------------------------------------------------------%
+
+% ----------------------------------------------------------------------%
+% 1- Préambule.                                                         %
+% ----------------------------------------------------------------------%
+
+% Pour le dépot initial (recto),       utiliser  oneside.
+% Pour le dépot final   (recto-verso), remplacer oneside par twoside.
+
+% \documentclass[12pt,oneside,francais,letterpaper]{stylethese}
+\documentclass[12pt,twoside,letterpaper]{stylethese}
+
+% \usepackage{multirow}
+\usepackage{natbib}
+\usepackage{amsmath}
+\usepackage{enumerate}  	 % For fancy enumerate item labels.
+% \usepackage{utopia}
+\usepackage{txfonts,empheq}
+% \usepackage{chancery}
+%\usepackage{ccaption}		 % Pour utiliser \legend (pour l'explication de la figure,texte plus long)
+%\usepackage{pgfplots}       % Pour dessiner des graphes direct dans LaTeX
+%\pgfplotsset{compat=1.3}
+
+% Sous Unix/Linux, utiliser  latin1 comme encodage.
+% Sous Windows,    remplacer latin1 par ansinew. (??  vérifier, moi ??a marche comme ??a)
+% Sous MacOS,      remplacer latin1 par applemac.
+
+
+\usepackage{ae,lmodern} 	 % ou seulement l'un, ou l'autre, ou times etc.
+\usepackage{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%\usepackage{ucs}
+
+
+\usepackage{chapterbib} % <----- for bibliography per chapter
+%\usepackage[duplicate]{chapterbib}
+%\usepackage{url}
+
+% Interligne 1 et 1/2.
+\setstretch{1.5}
+
+\usepackage[linktocpage=true,linkcolor=cyan,citecolor=cyan,colorlinks=true]{hyperref}
+
+% Pour cr??er un index (optionnel).
+
+\makeindex
+
+% Info sur la thèse (Titre, auteur, etc.)
+\Titre{TITRE DE LA THÈSE} % Mettre en majuscule!! (je nai pas résolu ce problème...)
+\Auteur{Sébastien Dugas}
+\Faculte{programme de maîtrise en océanographie}
+\Diplome{Master ès sciences}
+\Date{Décembre}{2018}
+
+% Utiliser \These pour une thèse, ou \Memoire pour un mémoire.
+\These
+% \Memoire
+
+% Utiliser      \Chapitres pour une thèse (ou mèmoire) traditionnelle.
+% Remplacer par \Articles  pour une thèse (ou mèmoire) par articles.
+\Articles
+% \Chapitres
+
+\begin{document}
+\pdfstringdefDisableCommands{%
+\let\MakeUppercase\relax}
+% ----------------------------------------------------------------------%
+% 2- Liminaires de la thèse.                                           %
+% ----------------------------------------------------------------------%
+\include{liminaires}
+
+
+% ----------------------------------------------------------------------%
+% 3- Corps de la thèse.                                                %
+% ----------------------------------------------------------------------%
+
+\debutcorps
+\cleardoublepage
+% Utiliser  <chapitres.tex> pour une thèse (ou mémoire) traditionnelle.
+% Remplacer par articles.tex  pour une thèse (ou mémoire) par articles.
+
+
+\introduction 
+\selectlanguage{french}
+\input{introGenerale.tex}
+\cleardoublepage
+
+This is a test \citep{Someauthor2013}
+
+\selectlanguage{english}
+\include{chap1}
+\include{chap2}
+% \include{chap3}
+\cleardoublepage
+
+\conclusion
+\selectlanguage{french}
+\input{concluGenerale.tex}
+\cleardoublepage
+
+
+
+% ----------------------------------------------------------------------%
+% 4 - Bibliographie.                                                    %
+% ----------------------------------------------------------------------%
+
+
+\begin{singlespace}
+  \makeatletter
+  \phantomsection\addcontentsline{toc}{chapter}{\MakeUppercase{\@references}}
+  \makeatother
+  \selectlanguage{english}
+  \bibdata{mylib}
+  \bibliographystyle{elsarticle-harv} % Ici éditer le style
+  \bibliography{mylib} % Ici mettre le nom de la biblio, ici mylib.bib
+\end{singlespace}
+
+% ----------------------------------------------------------------------%
+% 5 - Appendices de la thèse.                                           %
+% ----------------------------------------------------------------------%
+
+\input{annexeI.tex}
+
+% ----------------------------------------------------------------------%
+% Fin du document.                                                     %
+% ----------------------------------------------------------------------%
+
+\end{document}
+
